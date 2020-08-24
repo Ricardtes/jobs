@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+Route::get('/', function (){
+    return redirect()->route('messages.index');
 });
+Route::resource('/messages', 'MessageController')->except('show');
+Route::get('/messages/send/{id}', 'EmailController@send')->name('send.email');
+
+
